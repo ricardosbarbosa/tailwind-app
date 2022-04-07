@@ -1,9 +1,37 @@
+import { gql, useQuery } from '@apollo/client';
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
+import MyListbox from '../components/MyListbox';
 import styles from '../styles/Home.module.css'
 
+const EXCHANGE_RATES = gql`
+  query GetExchangeRates {
+    me {
+      ... on AdminUser {
+        id
+      }
+    }
+  }
+`;
+
+function ExchangeRates() {
+  const { loading, error, data } = useQuery(EXCHANGE_RATES);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
+
+  return data.rates.map(({ currency, rate }) => (
+    <div key={currency}>
+      <p>
+        {currency}: {rate}
+      </p>
+    </div>
+  ));
+}
+
 const Home: NextPage = () => {
+
   return (
     <div className={styles.container}>
       <Head>
@@ -12,10 +40,20 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+
+
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
+
+        <h1 className="text-7xl font-bold underline text-red-50">
+          Hello world!
+        </h1>
+
+        <MyListbox />
+
+        <ExchangeRates />
 
         <p className={styles.description}>
           Get started by editing{' '}
