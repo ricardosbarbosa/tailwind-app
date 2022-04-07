@@ -32,3 +32,9 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Chromatic:
+ℹ Your project token was added to the script via the --project-token flag.
+If you're running Chromatic via continuous integration, we recommend setting
+the CHROMATIC_PROJECT_TOKEN environment variable in your CI environment.
+You can then remove the --project-token from your package.json script.
